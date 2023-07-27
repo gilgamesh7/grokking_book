@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 import logging
 from typing import List, Callable
@@ -20,8 +21,27 @@ def calculate_elapsed_time(in_func: Callable)-> Callable:
     return calculate_timer
     
 @calculate_elapsed_time
-def binary_search(array:List[int], search_for_this_number:int)->str:
-    return "Found"
+def binary_search(input_number_array:List[int], search_for_this_number:int)->str:
+    try:
+        # keep track of which part of the list you'll search in.
+        low = 0
+        high = len(input_number_array)-1
+
+        while low <= high :
+            mid = math.floor((low + high)/2)    # check the middle element.
+            print(mid, type(mid))
+            guess = input_number_array[mid]
+
+            if guess == search_for_this_number:
+                return "Found"
+
+            if guess > search_for_this_number :
+                high = mid - 1            
+            else:
+                low = mid + 1
+        return "Not Found"
+    except Exception as error:
+        raise error
 
 if __name__ == "__main__":
     try:
@@ -33,7 +53,7 @@ if __name__ == "__main__":
         
         logger.info(f"Random Number Array : \n {random_int_array}")
 
-        search_for_this_number = input("Enter a number between 1 and 100 to search :")
+        search_for_this_number = int(input("Enter a number between 1 and 100 to search :"))
 
         result, time_taken = binary_search(random_int_array, search_for_this_number)
 

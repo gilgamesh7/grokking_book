@@ -64,11 +64,11 @@ if __name__ == "__main__":
 
         logger.info("Generate random numbers array")
 
-        random_int_array = np.sort(np.random.choice(np.arange(1,101), size=20, replace=False)).tolist()
+        random_int_array = np.sort(np.random.choice(np.arange(1,10001), size=9000, replace=False)).tolist()
         
         logger.info(f"Random Number Array : \n {random_int_array}")
 
-        search_for_this_number = int(input("Enter a number between 1 and 100 to search :"))
+        search_for_this_number = int(input("Enter a number between 1 and 10000 to search :"))
 
         number_of_steps, result, time_taken = binary_search(random_int_array, search_for_this_number)
         logger.info(f"Binary Search Result : {search_for_this_number} is {result} , took {number_of_steps} steps and this took {time_taken:.10f} seconds")
